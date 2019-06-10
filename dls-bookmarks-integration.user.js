@@ -3,7 +3,7 @@
 // @name           Bookmarks Integration for Destroyed Links Simulator
 // @description    Stores Destroyed Links Simulator information into Bookmarks
 // @category       Misc
-// @version        1.1
+// @version        1.2
 // @author         MarcioPG
 // @website        https://github.com/manierim/destroyed-links-simulator-bookmarks-integration
 // @updateURL      https://github.com/manierim/destroyed-links-simulator-bookmarks-integration/raw/master/dls-bookmarks-integration.meta.js
@@ -26,10 +26,19 @@ function wrapper() {
     // PLUGIN START ////////////////////////////////////////////////////////
 
     window.plugin.dlsBkmrkIntegration = function () { };
-
     $plugin = window.plugin.dlsBkmrkIntegration;
 
+    //-------------------------------------------------------------
+    // Init & Setup
+    //-------------------------------------------------------------
+
+    $plugin.initDone = false;
     $plugin.init = function () {
+
+        if ($plugin.initDone) {
+            return;
+        }
+        $plugin.initDone = true;
 
         var exit = false;
 
@@ -52,6 +61,17 @@ function wrapper() {
 
         $plugin.destroyedLinks.init();
         $plugin.bookmarks.init();
+
+    }
+
+    var setup = function () {
+
+        if (window.iitcLoaded) {
+            $plugin.init();
+        }
+        else {
+            window.addHook('iitcLoaded', $plugin.init);
+        }
 
     }
 
@@ -272,17 +292,6 @@ function wrapper() {
 
         window.addHook('pluginBkmrksEdit', $plugin.bookmarks.onEdit);
         $plugin.bookmarks.syncDestroyedSimulatorPortals();
-    }
-
-    var setup = function () {
-
-        if (window.iitcLoaded) {
-            $plugin.init();
-        }
-        else {
-            window.addHook('iitcLoaded', $plugin.init);
-        }
-
     }
 
     // PLUGIN END //////////////////////////////////////////////////////////
