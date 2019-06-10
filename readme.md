@@ -14,6 +14,8 @@ It support export for bookmarks, but then it's not possible to get back the book
 
 This integration seamlessly stores and retrieves the Destroyed Links Simulator "destroy" portals status to/from the Bookmarks data object.
 
+When the integration is active, Destroyed Links Simulator markers are not shown at all, Portal Bookmarks markers visibility can be managed with more flexibility.
+
 ## Installation
 [Click here](https://github.com/manierim/destroyed-links-simulator-bookmarks-integration/raw/master/dls-bookmarks-integration.user.js) and your userscript manager should do it.
 
