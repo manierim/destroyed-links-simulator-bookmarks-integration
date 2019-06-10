@@ -51,5 +51,8 @@ Bookmarks modifications implementing Bookmarks sharing will work as long as they
 
 ## Changelog
 
+- 2019-06-10 (version 1.1)
+  + regenerateAllPortals managed
+  + window.plugin.bookmarks.saveStorage not called when not needed
 - 2019-06-10 (version 1.0)
   + Initial Release

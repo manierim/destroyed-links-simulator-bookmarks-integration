@@ -3,7 +3,7 @@
 // @name           Bookmarks Integration for Destroyed Links Simulator
 // @description    Stores Destroyed Links Simulator information into Bookmarks
 // @category       Misc
-// @version        1.0
+// @version        1.1
 // @author         MarcioPG
 // @website        https://github.com/manierim/destroyed-links-simulator-bookmarks-integration
 // @updateURL      https://github.com/manierim/destroyed-links-simulator-bookmarks-integration/raw/master/dls-bookmarks-integration.meta.js
@@ -79,10 +79,12 @@ function wrapper() {
 
         var bkmrk = window.plugin.bookmarks.bkmrksObj.portals[bkmData.id_folder].bkmrk[bkmData.id_bookmark];
 
-        if (
-            bkmrk.destroy === undefined
-            || bkmrk.destroy != toBeDestroyed
-        ) {
+        var bkmkDestroy = false;
+        if (bkmrk.destroy !== undefined) {
+            bkmkDestroy = bkmrk.destroy;
+        }
+
+        if (bkmkDestroy != toBeDestroyed) {
             bkmrk.destroy = toBeDestroyed;
             window.plugin.bookmarks.saveStorage();
         }
@@ -107,7 +109,33 @@ function wrapper() {
 
     $plugin.destroyedLinks.regenerateAllPortals = function (...args) {
         $plugin.destroyedLinks.overridenFunctions.regenerateAllPortals(...args);
-        console.log('regenerateAllPortals', args);
+
+        var portalFolders = window.plugin.bookmarks.bkmrksObj.portals;
+
+        var changes = false;
+
+        for (var folderId in portalFolders) {
+
+            var folder = portalFolders[folderId];
+
+            for (var idBkmrk in folder['bkmrk']) {
+
+                var bkmrk = folder['bkmrk'][idBkmrk];
+
+                if (bkmrk['guid'] !== undefined) {
+
+                    if (bkmrk.destroy !== undefined && bkmrk.destroy) {
+                        bkmrk.destroy = false;
+                        changes = true;
+                    }
+                }
+
+            }
+        }
+
+        if (changes) {
+            window.plugin.bookmarks.saveStorage();
+        }
     }
 
     $plugin.destroyedLinks.init = function () {
