@@ -34,7 +34,7 @@ function wrapper() {
         var exit = false;
 
         if (window.plugin.destroyedLinks === undefined) {
-            console.warn('Integration: Destroyed Links Simulator - Bookmarks: destroyedLinks plugin not found');
+            console.warn('Bookmarks Integration for Destroyed Links Simulator: destroyedLinks plugin not found');
             exit = true;
         }
 
@@ -43,7 +43,7 @@ function wrapper() {
             || window.plugin.bookmarks.bkmrksObj === undefined
             || window.plugin.bookmarks.bkmrksObj.portals === undefined
         ) {
-            console.warn('Integration: Destroyed Links Simulator - Bookmarks: bookmarks plugin not found');
+            console.warn('Bookmarks Integration for Destroyed Links Simulator: bookmarks plugin not found');
             exit = true;
         }
         if (exit) {
