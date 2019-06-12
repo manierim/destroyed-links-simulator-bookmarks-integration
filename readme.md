@@ -51,6 +51,8 @@ Bookmarks modifications implementing Bookmarks sharing will work as long as they
 
 ## Changelog
 
+- 2019-06-13 (version 1.4)
+  + Major bugfix in setup logic!
 - 2019-06-11 (version 1.3)
   + bugfix
 - 2019-06-11 (version 1.2)

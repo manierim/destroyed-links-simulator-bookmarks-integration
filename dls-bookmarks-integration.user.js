@@ -3,7 +3,7 @@
 // @name           Bookmarks Integration for Destroyed Links Simulator
 // @description    Stores Destroyed Links Simulator information into Bookmarks
 // @category       Misc
-// @version        1.3
+// @version        1.4
 // @author         MarcioPG
 // @website        https://github.com/manierim/destroyed-links-simulator-bookmarks-integration
 // @updateURL      https://github.com/manierim/destroyed-links-simulator-bookmarks-integration/raw/master/dls-bookmarks-integration.meta.js
@@ -16,8 +16,6 @@
 // @grant          none
 // ==/UserScript==
 
-// MarcioPG WRAPPER v1.0 START /////////////////////////////////////////////
-
 function wrapper() {
 
     // ensure plugin framework is there, even if iitc is not yet loaded
@@ -29,16 +27,10 @@ function wrapper() {
     var $plugin = window.plugin.dlsBkmrkIntegration;
 
     //-------------------------------------------------------------
-    // Init & Setup
+    // Setup
     //-------------------------------------------------------------
 
-    $plugin.initDone = false;
-    $plugin.init = function () {
-
-        if ($plugin.initDone) {
-            return;
-        }
-        $plugin.initDone = true;
+    var setup = function () {
 
         var exit = false;
 
@@ -59,19 +51,8 @@ function wrapper() {
             return;
         }
 
-        $plugin.destroyedLinks.init();
-        $plugin.bookmarks.init();
-
-    }
-
-    var setup = function () {
-
-        if (window.iitcLoaded) {
-            $plugin.init();
-        }
-        else {
-            window.addHook('iitcLoaded', $plugin.init);
-        }
+        window.plugin.dlsBkmrkIntegration.destroyedLinks.init();
+        window.plugin.dlsBkmrkIntegration.bookmarks.init();
 
     }
 
