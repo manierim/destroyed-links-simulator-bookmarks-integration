@@ -3,7 +3,7 @@
 // @name           Bookmarks Integration for Destroyed Links Simulator
 // @description    Stores Destroyed Links Simulator information into Bookmarks
 // @category       Misc
-// @version        1.4
+// @version        1.5
 // @author         MarcioPG
 // @website        https://github.com/manierim/destroyed-links-simulator-bookmarks-integration
 // @updateURL      https://github.com/manierim/destroyed-links-simulator-bookmarks-integration/raw/master/dls-bookmarks-integration.meta.js
